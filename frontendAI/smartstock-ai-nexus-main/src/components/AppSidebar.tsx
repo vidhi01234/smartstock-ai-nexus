@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, ShoppingCart, Brain, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingCart, Brain, LogOut, DollarSign } from 'lucide-react';
 import { NavLink } from '@/components/NavLink';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { logout } from '@/lib/store';
@@ -20,6 +20,7 @@ const navItems = [
   { title: 'Inventory', url: '/inventory', icon: Package },
   { title: 'Sales Logs', url: '/sales', icon: ShoppingCart },
   { title: 'AI Forecasts', url: '/forecasts', icon: Brain },
+  { title: 'Cost Intelligence', url: '/cost-intelligence', icon: DollarSign },
 ];
 
 export function AppSidebar() {

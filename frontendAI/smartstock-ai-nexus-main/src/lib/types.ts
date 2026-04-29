@@ -15,6 +15,8 @@ export interface SaleEntry {
   productId: string;
   productName: string;
   unitsSold: number;
+  unitPrice?: number;
+  totalPrice?: number;
   date: string; // DD/MM/YYYY
 }
 

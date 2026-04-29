@@ -14,13 +14,22 @@ export function EditStockDialog({ product, open, onOpenChange, onUpdated }: {
 }) {
   const [stock, setStock] = useState('');
   const [price, setPrice] = useState('');
-  const [threshold, setThreshold] = useState('');
+  const [expiry, setExpiry] = useState('');
+
+  const toInputDate = (ddmmyyyy: string) => {
+    const [d, m, y] = ddmmyyyy.split('/');
+    return `${y}-${m}-${d}`;
+  };
+  const toStoredDate = (yyyymmdd: string) => {
+    const [y, m, d] = yyyymmdd.split('-');
+    return `${d}/${m}/${y}`;
+  };
 
   const handleOpen = (v: boolean) => {
     if (v && product) {
       setStock(String(product.currentStock));
       setPrice(String(product.unitPrice));
-      setThreshold(String(product.minThreshold));
+      setExpiry(toInputDate(product.expiryDate));
     }
     onOpenChange(v);
   };
@@ -35,7 +44,7 @@ export function EditStockDialog({ product, open, onOpenChange, onUpdated }: {
         ...products[idx],
         currentStock: Number(stock) || 0,
         unitPrice: Number(price) || 0,
-        minThreshold: Number(threshold) || 0,
+        expiryDate: expiry ? toStoredDate(expiry) : products[idx].expiryDate,
       };
       saveProducts(products);
       onOpenChange(false);
@@ -61,8 +70,8 @@ export function EditStockDialog({ product, open, onOpenChange, onUpdated }: {
             <Input type="number" value={price} onChange={e => setPrice(e.target.value)} className="bg-secondary border-border mt-1 font-mono" />
           </div>
           <div>
-            <Label className="text-[10px] uppercase tracking-widest text-muted-foreground">Min Threshold</Label>
-            <Input type="number" value={threshold} onChange={e => setThreshold(e.target.value)} className="bg-secondary border-border mt-1 font-mono" />
+            <Label className="text-[10px] uppercase tracking-widest text-muted-foreground">Expiry Date</Label>
+            <Input type="date" value={expiry} onChange={e => setExpiry(e.target.value)} className="bg-secondary border-border mt-1 font-mono" />
           </div>
           <Button type="submit" className="w-full btn-industrial rounded-md text-sm">Save Changes</Button>
         </form>

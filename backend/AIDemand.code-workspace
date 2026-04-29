@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "AIDemand",
+			"path": ".."
+		},
+		{
+			"name": "frontendAI",
+			"path": "../../frontendAI"
+		}
+	],
+	"settings": {}
+}

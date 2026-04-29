@@ -28,30 +28,28 @@ export default function AIForecasts() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             item_id: (() => {
-  const categoryMap: Record<string, string> = {
-    'Dairy': 'item_1',
-    'Grains': 'item_2',
-    'Bakery': 'item_3',
-    'Beverages': 'item_4',
-    'Oil & Ghee': 'item_5',
-    'Snacks': 'item_6',
-    'Spices': 'item_7',
-    'Personal Care': 'item_8',
-    'Vegetables': 'item_9',
-    'Fruits': 'item_10',
-  };
-  return categoryMap[p.category] || 'item_1';
-})(),
+              const categoryMap: Record<string, string> = {
+                'Dairy': 'item_1',
+                'Grains': 'item_2',
+                'Bakery': 'item_3',
+                'Beverages': 'item_4',
+                'Oil & Ghee': 'item_5',
+                'Snacks': 'item_6',
+                'Spices': 'item_7',
+                'Personal Care': 'item_8',
+                'Vegetables': 'item_9',
+                'Fruits': 'item_10',
+              };
+              return categoryMap[p.category] || 'item_1';
+            })(),
             price: p.unitPrice ?? 100,
             promo: 0,
             weekday: now.getDay(),
             month: now.getMonth() + 1,
           }),
         });
-
         const data = await response.json();
         const predicted = Math.round(data.forecast[0]);
-
         return {
           productId: p.id,
           productName: p.name,

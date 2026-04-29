@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 97%;
+    --foreground: 224 30% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 30% 14%;
+
+    --primary: 244 75% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 262 83% 68%;
+
+    --secondary: 220 25% 94%;
+    --secondary-foreground: 224 30% 14%;
+
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 262 83% 96%;
+    --accent-foreground: 244 75% 35%;
+
+    --destructive: 0 84% 58%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 90%;
+    --ring: 244 75% 58%;
+
+    --radius: 0.6rem;
+
+    --status-expired: 0 84% 58%;
+    --status-low: 25 95% 55%;
+    --status-overflow: 38 95% 55%;
+    --status-surplus: 152 70% 42%;
+    --status-ok: 152 70% 42%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(244 75% 58%), hsl(262 83% 68%));
+    --gradient-surface: linear-gradient(180deg, hsl(220 30% 98%), hsl(220 30% 95%));
+    --shadow-elegant: 0 10px 30px -12px hsl(244 75% 58% / 0.25);
+    --shadow-card: 0 1px 3px hsl(220 30% 50% / 0.08), 0 4px 12px hsl(220 30% 50% / 0.04);
+
+    --sidebar-background: 224 35% 12%;
+    --sidebar-foreground: 220 15% 75%;
+    --sidebar-primary: 244 75% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 30% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 224 25% 20%;
+    --sidebar-ring: 244 75% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'Geist Mono', 'SF Mono', 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+  .badge-expired {
+    @apply px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter;
+    background: hsl(var(--status-expired) / 0.1);
+    color: hsl(var(--status-expired));
+    border: 1px solid hsl(var(--status-expired) / 0.2);
+  }
+
+  .badge-low-stock {
+    @apply px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter animate-pulse;
+    background: hsl(var(--status-low) / 0.1);
+    color: hsl(var(--status-low));
+    border: 1px solid hsl(var(--status-low) / 0.2);
+  }
+
+  .badge-overflow {
+    @apply px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter;
+    background: hsl(var(--status-overflow) / 0.1);
+    color: hsl(var(--status-overflow));
+    border: 1px solid hsl(var(--status-overflow) / 0.2);
+  }
+
+  .badge-ok {
+    @apply px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tighter;
+    background: hsl(var(--status-surplus) / 0.1);
+    color: hsl(var(--status-surplus));
+    border: 1px solid hsl(var(--status-surplus) / 0.2);
+  }
+
+  .kpi-card {
+    @apply rounded-lg border bg-card p-4 transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .kpi-card:hover {
+    box-shadow: var(--shadow-elegant);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  .table-header {
+    @apply bg-secondary/70 uppercase text-[10px] tracking-widest text-muted-foreground;
+  }
+
+  .btn-industrial {
+    @apply text-primary-foreground hover:opacity-90 active:scale-[0.98] transition-all duration-150;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-elegant);
+  }
+
+  .sidebar-active {
+    @apply text-sidebar-primary-foreground;
+    background: var(--gradient-primary);
+    box-shadow: 0 4px 12px hsl(244 75% 58% / 0.4);
+  }
+}
+
+body {
+  background: var(--gradient-surface);
+  min-height: 100vh;
+}
