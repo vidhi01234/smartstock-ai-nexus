@@ -8,6 +8,9 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+
+# Large data files
+data/*.csv
 dist
 dist-ssr
 *.local
